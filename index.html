@@ -21,7 +21,6 @@
     // You can retrieve services via the defaultApp variable...
     var defaultStorage = defaultApp.storage();
     var defaultDatabase = defaultApp.database();
-    writeUserData(`100`, `taqi`, `taqi@mail.com`, `google.com`)
 
     function writeUserData(userId, name, email, imageUrl) {
         defaultDatabase.ref('users/' + userId).set({
@@ -30,11 +29,17 @@
             profile_picture: imageUrl
         });
     }
+    let counter = 1
+    writeUserData(`${counter}`, `taqi`, `taqi@mail.com`, `google.com`)
+    setInterval(() => {
+        counter++
+    }, 500);
 
     defaultDatabase.ref(`/users/1`).on(`value`, function (snapshots) {
         console.log(snapshots.val());
-          
+
     });
+
     
 </script>
 <!-- Firebase App is always required and must be first -->
